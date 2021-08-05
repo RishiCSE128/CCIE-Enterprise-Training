@@ -1,0 +1,15 @@
+Aug 05 18:42:36.987 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Aug 05 18:42:36.989 HYPERVISOR: Started on IP = localhost, TCP port = 60218.
+Aug 05 18:42:37.473 HYPERVISOR: exec_cmd: hypervisor version 
+Aug 05 18:42:37.473 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\sapta\Documents\git\CCIE-Enterprise-Training\Labs\Architecture\Spine-Leaf base\project-files\dynamips 
+Aug 05 18:42:37.474 GENERAL: working_dir=C:\Users\sapta\Documents\git\CCIE-Enterprise-Training\Labs\Architecture\Spine-Leaf base\project-files\dynamips
+Aug 05 18:42:37.474 HYPERVISOR: exec_cmd: ethsw create Switch1 
+Aug 05 18:42:38.244 HYPERVISOR: exec_cmd: nio create_udp udp-706651af-7938-41b9-bbc8-88992feb0732 10005 127.0.0.1 10004 
+Aug 05 18:42:38.244 HYPERVISOR: exec_cmd: ethsw add_nio Switch1 udp-706651af-7938-41b9-bbc8-88992feb0732 
+Aug 05 18:42:38.245 HYPERVISOR: exec_cmd: ethsw set_access_port Switch1 udp-706651af-7938-41b9-bbc8-88992feb0732 1 
+Aug 05 18:42:38.275 HYPERVISOR: exec_cmd: nio create_udp udp-7f059261-20be-43dd-a959-33cd6b1a231f 10006 192.168.150.128 20054 
+Aug 05 18:42:38.275 HYPERVISOR: exec_cmd: ethsw add_nio Switch1 udp-7f059261-20be-43dd-a959-33cd6b1a231f 
+Aug 05 18:42:38.291 HYPERVISOR: exec_cmd: ethsw set_access_port Switch1 udp-7f059261-20be-43dd-a959-33cd6b1a231f 1 
+Aug 05 18:42:38.330 HYPERVISOR: exec_cmd: nio create_udp udp-413b9537-f12d-474f-8ee7-6f6d16d98eec 10007 192.168.150.128 20055 
+Aug 05 18:42:38.331 HYPERVISOR: exec_cmd: ethsw add_nio Switch1 udp-413b9537-f12d-474f-8ee7-6f6d16d98eec 
+Aug 05 18:42:38.334 HYPERVISOR: exec_cmd: ethsw set_access_port Switch1 udp-413b9537-f12d-474f-8ee7-6f6d16d98eec 1 
