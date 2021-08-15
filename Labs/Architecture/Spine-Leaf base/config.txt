@@ -1,0 +1,140 @@
+!S6
+conf t
+	ip rouitng    !enabling L3 switiching
+	int e2/0
+		no switchport 
+		ip add	dhcp 
+		no sh
+	exit	
+
+	!! VTP config
+	vtp domain TEST_DOMAIN
+	vtp mode server 
+	vlan 10
+		name student 
+	vlan 20
+		name staff
+	int range e0/0-3
+		switchport trunk encap dot1q
+		switchport mode trunk
+	exit
+
+	!! EC config 
+	port-channel load-balance src-dst-ip
+	int range e1/0-3
+		channle-proto lacp
+		channel-group 1 mode active
+	exit 	
+	int po 1 
+		switchport trunck encap dot1q
+		switchport mode trunk 
+
+	!! HSRP Config
+	track 10 int e2/0 line
+	int vlan 10
+		ip add	192.168.10.1 255.255.255.0  ! int IP=.1 
+		standby 10 ip 192.168.10.100        ! Grp=10, VIP=.100 
+		standby 10 prio 110                 ! active 
+		standby 10 preempt  
+		standby 10 track 10 decrement 20
+	exit 
+
+	int vlan 20
+		ip add	192.168.20.1 255.255.255.0  ! int IP=.1 
+		standby 20 ip 192.168.20.100        ! Grp=20, VIP=.100 
+		standby 20 prio 100                 ! standby (with default prio) 
+		standby 20 preempt  
+	exit 
+
+	!! DHCP Config 
+	ip dhcp pool LOCAL_10
+		network 192.168.10.0 /24
+		default 192.168.10.1
+		dns 8.8.8.8
+	exit
+	ip dhcp pool LOCAL_20
+		network 192.168.20.0 /24
+		default 192.168.20.1
+		dns 8.8.8.8
+	exit
+	ip dhcp exclude 192.168.10.1 192.168.10.100
+	ip dhcp exclude 192.168.10.1 192.168.20.100
+
+	!! NAT config
+	ip access stand ACL_NAT
+		permit 192.168.10.0 0.0.0.255
+		permit 192.168.20.0 0.0.0.255
+	exit
+	int e2/0
+		ip nat out
+	int vlan 10
+		ip nat in
+	int vlan 20
+		ip nat in
+	exit	
+end
+
+---------------------------------------------------------------------------
+!S7
+conf t
+	ip rouitng    !enabling L3 switiching
+	int e2/0
+		no switchport 
+		ip add	dhcp 
+		no sh
+	exit		
+
+	vtp domain TEST_DOMAIN
+	vtp mode server
+	int range e0/0-3
+		switchport trunk encap dot1q
+		switchport mode trunk
+
+	!! EC config 
+	port-channel load-balance src-dst-ip
+	int range e1/0-3
+		channel-proto lacp
+		channel-group 1 mode passive
+	exit 	
+	!! HSRP Config
+	track 20 int e2/0 line
+	int vlan 10
+		ip add	192.168.10.2 255.255.255.0  ! int IP=.2 
+		standby 10 ip 192.168.10.100        ! Grp=10, VIP=.100 
+		standby 10 prio 100                 ! standby (with default prio)
+		standby 10 preempt  
+	exit 
+
+	int vlan 20
+		ip add	192.168.20.1 255.255.255.0  ! int IP=.1 
+		standby 20 ip 192.168.20.100        ! Grp=20, VIP=.100 
+		standby 20 prio 100                 ! standby (with default prio) 
+		standby 20 track 20 decr 20
+		standby 20 preempt  
+	exit
+
+	!! NAT Config 
+	exit
+	int e2/0
+		ip nat out
+	int vlan 10
+		ip nat in
+	int vlan 20
+		ip nat in
+	exit
+end
+
+---------------------------------------------------------------------------
+!s2-5
+conf t
+	vtp domain TEST_DOMAIN
+	vtp mode client 
+	
+	int range e1/0-3
+		switchport mode access
+		switchport access vlan 10
+	exit
+	int range e2/0-3
+		switchport mode access
+		switchport access vlan 20
+	exit
