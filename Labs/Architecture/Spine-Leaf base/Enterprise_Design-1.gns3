@@ -416,8 +416,8 @@
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
                             "text": "e1/0",
-                            "x": 76,
-                            "y": -56
+                            "x": 479,
+                            "y": -258
                         },
                         "node_id": "4e8b1fa5-4b0a-4ee6-bb16-4fd6b5af445c",
                         "port_number": 0
@@ -512,8 +512,8 @@
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
                             "text": "e1/2",
-                            "x": 101,
-                            "y": -87
+                            "x": 478,
+                            "y": -235
                         },
                         "node_id": "4e8b1fa5-4b0a-4ee6-bb16-4fd6b5af445c",
                         "port_number": 2
@@ -524,8 +524,8 @@
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
                             "text": "e1/2",
-                            "x": -1,
-                            "y": -109
+                            "x": 311,
+                            "y": -248
                         },
                         "node_id": "97685e13-0184-4b8d-85be-dc21018ccee8",
                         "port_number": 2
@@ -556,8 +556,8 @@
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
                             "text": "e1/3",
-                            "x": -4,
-                            "y": -158
+                            "x": 302,
+                            "y": -202
                         },
                         "node_id": "97685e13-0184-4b8d-85be-dc21018ccee8",
                         "port_number": 3
